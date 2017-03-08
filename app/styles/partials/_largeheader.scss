@@ -1,0 +1,43 @@
+// CSS Styles for Large
+// Header on Home page 
+.large-header {
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: rbga(34, 34, 34, 0.85);
+    background-image: url('../../images/dope-af.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    z-index: 1;
+    // Logo Wrap & Positioning
+    .logo-wrap {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        color: #F9F1E9;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+    }
+    h1 {
+        font-size: 7em;
+    }
+}
+
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    /* Styles */
+    .large-header {
+        width: 100vw;
+    }
+    .logo-wrap {
+        img {
+            max-width: 90%;
+        }
+    }
+}
