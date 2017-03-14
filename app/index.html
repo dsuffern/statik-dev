@@ -2,6 +2,14 @@
 <html class="no-js" lang="">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Oswald', 'Open Sans']
+            }
+        });
+    </script>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,10 +42,11 @@
             <!-- ... -->
         </div>
 
-        <nav>
-            <ul class="cd-secondary-nav">
-                <li><a href="#0">Log In</a></li>
-                <li><a href="#0">Register</a></li>
+        <nav data-gumshoe-header>
+            <ul data-gumshoe class="cd-secondary-nav">
+                <li><a data-scroll href="#music">Check Out My Music</a></li>
+                <li><a data-scroll href="#shows">Upcoming Gigs</a></li>
+                <li><a data-scroll href="#bio">Bio</a></li>
             </ul>
         </nav>
         <!-- cd-nav -->
@@ -51,15 +60,15 @@
     <nav>
         <ul class="cd-primary-nav">
             <li class="cd-label">About us</li>
-            <li><a href="#0">The team</a></li>
-            <li><a href="#0">Our services</a></li>
-            <li><a href="#0">Our projects</a></li>
+            <li><a href="http://localhost:9000#music">Check Out My Music</a></li>
+            <li><a href="http://localhost:9000#shows">Upcoming Gigs</a></li>
+            <li><a href="http://localhost:9000#bio">Bio</a></li>
+            <!--Social Links-->
             <li class="cd-label">Follow us</li>
-
-            <li class="cd-social cd-facebook"><a href="#0">Facebook</a></li>
-            <li class="cd-social cd-instagram"><a href="#0">Instagram</a></li>
-            <li class="cd-social cd-dribbble"><a href="#0">Dribbble</a></li>
-            <li class="cd-social cd-twitter"><a href="#0">Twitter</a></li>
+            <li class="cd-social cd-facebook"><a href="https://facebook.com">Facebook</a></li>
+            <li class="cd-social cd-instagram"><a href="https://instagram.com">Instagram</a></li>
+            <li class="cd-social cd-dribbble"><a href="http://dribbble.com">Dribbble</a></li>
+            <li class="cd-social cd-twitter"><a href="https://twitter.com">Twitter</a></li>
         </ul>
     </nav>
 
@@ -69,8 +78,10 @@
         <section id="large-header" class="large-header">
             <div class="logo-wrap">
                 <!--<img src="images/statik-logo-transparent.png" alt="" class="logo-feature">-->
-                <h1>STATIK</h1>
+                <h1 class="site-title">STATIK</h1>
             </div>
+            <!--<h1 class="site-title align-self-center">STATIK</h1>-->
+
             <canvas id="particle-canvas"></canvas>
         </section>
     </div>
@@ -83,21 +94,21 @@
 
         <!-- Section with Music
       ==============================================-->
-        <section class="music-wrap content-section">
+        <section id='music' class="music-wrap content-section">
             <div class="container">
                 <header>
                     <h2>Music <i class="deco"></i></h2>
                 </header>
                 <div class="row">
                     <div class="col">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/34469757&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-                        </div>
+                        <!--<div class="embed-responsive embed-responsive-16by9">-->
+                        <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/34469757&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                        <!--</div>-->
                     </div>
                     <div class="col">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/212574792&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-                        </div>
+                        <!--<div class="embed-responsive embed-responsive-16by9">-->
+                        <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/212574792&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -105,7 +116,7 @@
 
         <!-- Short Bio
       ==============================================-->
-        <section class="about content-section">
+        <section id='bio' class="about content-section">
             <header>
                 <h2>About Me <i class="deco"></i></h2>
             </header>
@@ -136,7 +147,7 @@
 
         <!-- Upcoming Events (Table)
       ==============================================-->
-        <section class="events-wrap content-section">
+        <section id='shows' class="events-wrap content-section">
             <div class="container">
                 <header>
                     <h2>Upcoming Shows <i class="deco"></i></h2>
@@ -179,9 +190,11 @@
 
         <!-- Latest News
       ==============================================-->
-        <section class="news-wrap content-section">
-            <h2>Latest News</h2>
+        <section id='news' class="news-wrap content-section">
             <div class="container">
+                <header>
+                    <h2>Latest News <i class="deco"></i></h2>
+                </header>
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -295,6 +308,7 @@
         </div>
     </section>
 
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -322,6 +336,8 @@
     <script src="/bower_components/bootstrap/js/dist/tooltip.js"></script>
     <script src="/bower_components/bootstrap/js/dist/popover.js"></script>
     <script src="/bower_components/classie/classie.js"></script>
+    <script src="/bower_components/gumshoe/dist/js/gumshoe.js"></script>
+    <script src="/bower_components/smooth-scroll/dist/js/smooth-scroll.js"></script>
     <script src="https://npmcdn.com/particlesjs@1.0.3/dist/particles.min.js"></script>
     <!-- endbuild -->
 

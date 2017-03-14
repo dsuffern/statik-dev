@@ -3,21 +3,22 @@
  *
  */
 
+//------------------------------------
+$headerBgColor: rgba(2, 3, 3, 0.85);
+$navLinkHoverBg: #e36767;
+//-------------------------------------
 .cd-header {
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(2, 3, 3, 0.95);
+    background: $headerBgColor;
     height: 50px;
     width: 100%;
     z-index: 3;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-@media only screen and (min-width: 768px) {
-    .cd-header {
+    @media only screen and (min-width: 768px) {
         height: 80px;
         background: transparent;
         box-shadow: none;
@@ -28,28 +29,23 @@
     .cd-header {
         transition: background-color 0.3s;
         /* Force Hardware Acceleration in WebKit */
-        -webkit-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
-        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
     .cd-header.is-fixed {
         /* when the user scrolls down, we hide the header right above the viewport */
         position: fixed;
         top: -80px;
-        background-color: rgba(2, 23, 37, 0.96);
+        background-color: $headerBgColor;
         transition: transform 0.3s;
     }
     .cd-header.is-visible {
         /* if the user changes the scrolling direction, we show the header */
-        -webkit-transform: translate3d(0, 100%, 0);
-        -ms-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0);
     }
     .cd-header.menu-is-open {
         /* add a background color to the header when the navigation is open */
-        background-color: rgba(2, 23, 37, 0.96);
+        background-color: $headerBgColor;
     }
 }
 
@@ -58,8 +54,6 @@
     position: absolute;
     top: 50%;
     bottom: auto;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     left: .875em;
     img {
@@ -77,8 +71,6 @@
     position: absolute;
     top: 50%;
     bottom: auto;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     right: 10em;
     /* hidden on small devices */
@@ -93,10 +85,7 @@
         text-transform: uppercase;
         font-weight: 700;
     }
-}
-
-@media only screen and (min-width: 768px) {
-    .cd-secondary-nav {
+    @media only screen and (min-width: 768px) {
         display: block;
     }
 }
@@ -123,8 +112,6 @@
         top: 50%;
         bottom: auto;
         right: auto;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
         transform: translateX(-50%) translateY(-50%);
         width: 18px;
         height: 2px;
@@ -151,21 +138,17 @@
 }
 
 .cd-primary-nav-trigger .cd-menu-icon.is-clicked {
-    background-color: rgba(255, 255, 255, 0);
+    // background-color: rgba(255, 255, 255, 0);
+    background-color: $headerBgColor;
     &::before {
-        top: 0;
-        -webkit-transform: rotate(135deg);
-        -ms-transform: rotate(135deg);
         transform: rotate(135deg);
     }
     &::after {
-        top: 0;
-        -webkit-transform: rotate(225deg);
-        -ms-transform: rotate(225deg);
         transform: rotate(225deg);
     }
     &::before,
     &::after {
+        top: 0;
         background-color: #fff;
     }
 }
@@ -180,8 +163,6 @@
         right: 2.2em;
         top: 50%;
         bottom: auto;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
         transform: translateY(-50%);
         .cd-menu-text {
             display: inline-block;
@@ -189,8 +170,6 @@
         .cd-menu-icon {
             left: auto;
             right: 1em;
-            -webkit-transform: translateX(0) translateY(-50%);
-            -ms-transform: translateX(0) translateY(-50%);
             transform: translateX(0) translateY(-50%);
         }
     }
@@ -203,74 +182,82 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background: rgba(2, 2, 3, 0.96);
+    background: $headerBgColor;
     z-index: 2;
     text-align: center;
     padding: 50px 0;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow: auto;
     /* this fixes the buggy scrolling on webkit browsers - mobile devices only - when overflow property is applied */
     -webkit-overflow-scrolling: touch;
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
     transform: translateY(-100%);
-    -webkit-transition-property: -webkit-transform;
-    -moz-transition-property: -moz-transform;
     transition-property: transform;
-    -webkit-transition-duration: 0.4s;
-    -moz-transition-duration: 0.4s;
     transition-duration: 0.4s;
-}
-
-.cd-primary-nav li {
-    font-size: 22px;
-    font-size: 1.375rem;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: .2em 0;
-    text-transform: capitalize;
-}
-
-.cd-primary-nav a {
-    display: inline-block;
-    padding: .4em 1em;
-    border-radius: 0.25em;
-    -webkit-transition: background 0.2s;
-    -moz-transition: background 0.2s;
-    transition: background 0.2s;
-    text-decoration: none;
+    // Targets Tablet and Desktop
+    @media only screen and (min-width: 768px) {
+        padding: 80px 0;
+    }
+    li {
+        font-size: 22px;
+        font-size: 1.375rem;
+        font-weight: 300;
+        list-style: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: .2em 0;
+        text-transform: capitalize;
+    }
+    a {
+        color: #ccc;
+        display: inline-block;
+        padding: .4em 1em;
+        border-radius: 0.25em;
+        transition: background 0.2s;
+        text-decoration: none;
+        &:hover {
+            background-color: $navLinkHoverBg;
+            color: #fff;
+        }
+    }
+    .cd-label {
+        color: #eaeaea;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
+        font-size: 0.875rem;
+        margin: 2.4em 0 .8em;
+    }
+    // Targets Larger Screens
+    @media only screen and (min-width: 1170px) {
+        li {
+            font-size: 30px;
+            font-size: 1.875rem;
+        }
+        .cd-label {
+            font-size: 16px;
+            font-size: 1rem;
+        }
+    }
 }
 
 .no-touch .cd-primary-nav a:hover {
-    background-color: #e36767;
-}
-
-.cd-primary-nav .cd-label {
-    color: #06446e;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 14px;
-    font-size: 0.875rem;
-    margin: 2.4em 0 .8em;
+    background-color: $navLinkHoverBg;
 }
 
 .cd-primary-nav .cd-social {
     display: inline-block;
     margin: 0 .4em;
-}
-
-.cd-primary-nav .cd-social a {
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    background-image: url("../../images/cd-socials.svg");
-    background-repeat: no-repeat;
-    /* image replacement */
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
+    a {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        background-image: url("../../images/cd-socials.svg");
+        background-repeat: no-repeat;
+        /* image replacement */
+        overflow: hidden;
+        text-indent: 100%;
+        white-space: nowrap;
+    }
 }
 
 .cd-primary-nav .cd-facebook a {
@@ -290,24 +277,5 @@
 }
 
 .cd-primary-nav.is-visible {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
     transform: translateY(0);
-}
-
-@media only screen and (min-width: 768px) {
-    .cd-primary-nav {
-        padding: 80px 0;
-    }
-}
-
-@media only screen and (min-width: 1170px) {
-    .cd-primary-nav li {
-        font-size: 30px;
-        font-size: 1.875rem;
-    }
-    .cd-primary-nav .cd-label {
-        font-size: 16px;
-        font-size: 1rem;
-    }
 }

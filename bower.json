@@ -18,6 +18,9 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "classie": "^1.0.1"
+    "classie": "^1.0.1",
+    "gumshoe": "https://github.com/cferdinandi/gumshoe.git#^3.5.0",
+    "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#^10.2.1",
+    "animejs": "^2.0.0"
   }
 }

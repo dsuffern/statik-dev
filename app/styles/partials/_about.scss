@@ -1,27 +1,29 @@
 .about {
-    background-image: url('../../images/statik-equipment.jpg');
+    background: url('../../images/statik-equipment.jpg');
+    background-color: hsla(200, 40%, 30%, .4);
     background-size: cover;
     background-position: 50% 50%;
 }
 
 .section-bio {
     .content {
-        width: 90%;
-        max-width: 800px;
-        padding: 40px 70px 70px 70px;
+        // width: 90%;
+        // max-width: 800px;
+        // padding: 40px 70px 70px 70px;
         background: #fff;
-        color: #232323;
+        color: #343434;
         margin: 30px auto 80px auto;
         box-shadow: 0 0 18px rgba(0, 0, 0, 0.8);
+        justify-content: center;
     }
     .content_inner {
+        padding: 40px 70px 70px 70px;
         h4 {
             color: #232323;
             font-size: 1.7rem;
             line-height: 1.25em;
             letter-spacing: 0.05em;
-            margin-bottom: 20px;
-            margin-top: 40px;
+            margin: 40px 0 20px 0;
             padding-bottom: 14px;
             position: relative;
             &::after {

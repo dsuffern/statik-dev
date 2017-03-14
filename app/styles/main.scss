@@ -1,16 +1,9 @@
 // bower:scss
-@import "bower_components/bootstrap/scss/bootstrap.scss";
-@import "partials/_menu.scss";
-@import "partials/largeheader.scss";
-@import "partials/footer-audio.scss";
-@import "partials/music-section.scss";
-@import "partials/offscreen-nav.scss";
-@import "partials/about.scss";
-@import "partials/events.scss";
-@import "partials/news-section.scss";
+@import "imports";
 // endbower
 body {
     background-color: rgba(65, 65, 65, 0.95);
+    font-family: "Open Sans";
     max-width: 100%;
     overflow-x: hidden;
     color: #f1f1f1;
@@ -23,6 +16,8 @@ h3,
 h4,
 h5 {
     color: #f1f1f1;
+    font-family: "Oswald";
+    font-weight: 700;
 }
 
 @keyframes mbarmnu {
@@ -56,16 +51,17 @@ h5 {
 }
 
 .content-section {
-    padding: 60px 0;
+    padding: 4em 0;
     h2 {
         color: #f3f3f3;
         font-size: 3em;
         text-align: center;
+        text-shadow: 0.04em 0.04em 0 rgba(30, 30, 30, 0.75);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.09em;
         line-height: 1.25em;
-        margin-bottom: 0.7em;
-        padding-top: 1em;
+        margin-bottom: 1em;
+        padding: 1em 0 .5em;
         position: relative;
         &::before,
         &::after {
@@ -92,7 +88,7 @@ h5 {
                 height: 20px;
                 position: absolute;
                 left: 50%;
-                margin: 0 0 0 -11px;
+                margin: 15px 0 0 -11px;
                 animation: mbarmnu 0.5s forwards;
                 animation-duration: 1.8s;
                 animation-iteration-count: infinite;
@@ -103,7 +99,7 @@ h5 {
                 animation: mbarmnuB 0.5s forwards;
                 animation-duration: 1.4s;
                 animation-iteration-count: infinite;
-                margin: 0 0 0 -5px;
+                margin: 15px 0 0 -5px;
             }
         }
     }

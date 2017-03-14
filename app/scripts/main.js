@@ -3,6 +3,22 @@
  * Initialize Plugins & Add Scripts
  * 
  */
+'use strict';
+
+// Gumshoe Initialization
+// ==========================================
+gumshoe.init();
+
+// smoothScroll Initialization
+// ==========================================
+smoothScroll.init({
+    selector: '[data-scroll]', // Selector for links (must be a class, ID, data attribute, or element tag)
+    selectorHeader: null, // Selector for fixed headers (must be a valid CSS selector) [optional]
+    speed: 500, // Integer. How fast to complete the scroll in milliseconds
+    easing: 'easeInOutCubic', // Easing pattern to use
+    offset: 0, // Integer. How far to offset the scrolling anchor location in pixels
+    callback: function(anchor, toggle) {} // Function to run after scrolling
+});
 
 // Particles Setting & Initialization
 // ==========================================
@@ -18,264 +34,97 @@ window.onload = function() {
     });
 };
 
-// (function() {
+/*
+ * Bottom bar music player
+ * Borrowed from Codepen.io
+ */
 
-//     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
+//     // Declare Variables
+//     let music = document.getElementById("music");
+//     let playButton = document.getElementById("play");
+//     let pauseButton = document.getElementById("pause");
+//     let playhead = document.getElementById("elapsed");
+//     let timeline = document.getElementById("slider");
+//     let timer = document.getElementById("timer");
+//     let duration;
 
-//     // Main
-//     initHeader();
-//     initAnimation();
-//     addListeners();
+//     pauseButton.style.visibility = "hidden";
 
-//     function initHeader() {
-//         width = window.innerWidth;
-//         height = window.innerHeight;
-//         target = {
-//             x: width / 2,
-//             y: height / 2
-//         };
+//     let timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 
-//         largeHeader = document.getElementById('large-header');
-//         largeHeader.style.height = height + 'px';
+//     music.addEventListener("timeupdate", timeUpdate, false);
 
-//         canvas = document.getElementById('particle-canvas');
-//         canvas.width = width;
-//         canvas.height = height;
-//         ctx = canvas.getContext('2d');
+//     function timeUpdate() {
+//         let playPercent = timelineWidth * (music.currentTime / duration);
+//         playhead.style.width = playPercent + "px";
 
-//         // create points
-//         points = [];
-//         for (var x = 0; x < width; x = x + width / 20) {
-//             for (var y = 0; y < height; y = y + height / 20) {
-//                 var px = x + Math.random() * width / 20;
-//                 var py = y + Math.random() * height / 20;
-//                 var p = {
-//                     x: px,
-//                     originX: px,
-//                     y: py,
-//                     originY: py
-//                 };
-//                 points.push(p);
-//             }
-//         }
-
-//         // for each point find the 5 closest points
-//         for (var i = 0; i < points.length; i++) {
-//             var closest = [];
-//             var p1 = points[i];
-//             for (var j = 0; j < points.length; j++) {
-//                 var p2 = points[j]
-//                 if (!(p1 == p2)) {
-//                     var placed = false;
-//                     for (var k = 0; k < 5; k++) {
-//                         if (!placed) {
-//                             if (closest[k] == undefined) {
-//                                 closest[k] = p2;
-//                                 placed = true;
-//                             }
-//                         }
-//                     }
-
-//                     for (var k = 0; k < 5; k++) {
-//                         if (!placed) {
-//                             if (getDistance(p1, p2) < getDistance(p1, closest[k])) {
-//                                 closest[k] = p2;
-//                                 placed = true;
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//             p1.closest = closest;
-//         }
-
-//         // assign a circle to each point
-//         for (var i in points) {
-//             var c = new Circle(points[i], 2 + Math.random() * 2, 'rgba(255,255,255,0.3)');
-//             points[i].circle = c;
+//         let secondsIn = Math.floor(((music.currentTime / duration) / 3.5) * 100);
+//         if (secondsIn <= 3) {
+//             timer.innerHTML = "0:0" + secondsIn;
+//         } else {
+//             timer.innerHTML = "0:" + secondsIn;
 //         }
 //     }
 
-//     // Event handling
-//     function addListeners() {
-//         if (!('ontouchstart' in window)) {
-//             window.addEventListener('mousemove', mouseMove);
-//         }
-//         window.addEventListener('scroll', scrollCheck);
-//         window.addEventListener('resize', resize);
-//     }
+//     playButton.onclick = () => {
+//         music.play();
+//         playButton.style.visibility = "hidden";
+//         pauseButton.style.visibility = "visible";
+//     };
 
-//     function mouseMove(e) {
-//         var posx = posy = 0;
-//         var posy = 0;
-//         if (e.pageX || e.pageY) {
-//             posx = e.pageX;
-//             posy = e.pageY;
-//         } else if (e.clientX || e.clientY) {
-//             posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-//             posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-//         }
-//         target.x = posx;
-//         target.y = posy;
-//     }
+//     pauseButton.onclick = () => {
+//         music.pause();
+//         playButton.style.visibility = "visible";
+//         pauseButton.style.visibility = "hidden";
+//     };
 
-//     function scrollCheck() {
-//         if (document.body.scrollTop > height) animateHeader = false;
-//         else animateHeader = true;
-//     }
-
-//     function resize() {
-//         width = window.innerWidth;
-//         height = window.innerHeight;
-//         largeHeader.style.height = height + 'px';
-//         canvas.width = width;
-//         canvas.height = height;
-//     }
-
-//     // animation
-//     function initAnimation() {
-//         animate();
-//         for (var i in points) {
-//             shiftPoint(points[i]);
-//         }
-//     }
-
-//     function animate() {
-//         if (animateHeader) {
-//             ctx.clearRect(0, 0, width, height);
-//             for (var i in points) {
-//                 // detect points in range
-//                 if (Math.abs(getDistance(target, points[i])) < 4000) {
-//                     points[i].active = 0.3;
-//                     points[i].circle.active = 0.6;
-//                 } else if (Math.abs(getDistance(target, points[i])) < 20000) {
-//                     points[i].active = 0.1;
-//                     points[i].circle.active = 0.3;
-//                 } else if (Math.abs(getDistance(target, points[i])) < 40000) {
-//                     points[i].active = 0.02;
-//                     points[i].circle.active = 0.1;
-//                 } else {
-//                     points[i].active = 0;
-//                     points[i].circle.active = 0;
-//                 }
-
-//                 drawLines(points[i]);
-//                 points[i].circle.draw();
-//             }
-//         }
-//         requestAnimationFrame(animate);
-//     }
-
-//     function shiftPoint(p) {
-//         TweenLite.to(p, 1 + 1 * Math.random(), {
-//             x: p.originX - 50 + Math.random() * 100,
-//             y: p.originY - 50 + Math.random() * 100,
-//             ease: Circ.easeInOut,
-//             onComplete: function() {
-//                 shiftPoint(p);
-//             }
-//         });
-//     }
-
-//     // Canvas manipulation
-//     function drawLines(p) {
-//         if (!p.active) return;
-//         for (var i in p.closest) {
-//             ctx.beginPath();
-//             ctx.moveTo(p.x, p.y);
-//             ctx.lineTo(p.closest[i].x, p.closest[i].y);
-//             ctx.strokeStyle = 'rgba(156,217,249,' + p.active + ')';
-//             ctx.stroke();
-//         }
-//     }
-
-//     function Circle(pos, rad, color) {
-//         var _this = this;
-
-//         // constructor
-//         (function() {
-//             _this.pos = pos || null;
-//             _this.radius = rad || null;
-//             _this.color = color || null;
-//         })();
-
-//         this.draw = function() {
-//             if (!_this.active) return;
-//             ctx.beginPath();
-//             ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
-//             ctx.fillStyle = 'rgba(156,217,249,' + _this.active + ')';
-//             ctx.fill();
-//         };
-//     }
-
-//     // Util
-//     function getDistance(p1, p2) {
-//         return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
-//     }
-
+//     music.addEventListener("canplaythrough", () => {
+//         duration = music.duration;
+//     }, false);
 // })();
 
-// Menu Links Setting & Initialization
-// ==========================================
-// (function() {
-//     [].slice.call(document.querySelectorAll('.main-nav')).forEach(function(menu) {
-//         var menuItems = menu.querySelectorAll('.nav-link'),
-//             setCurrent = function(ev) {
-//                 ev.preventDefault();
-//                 var item = ev.target.parentNode; // li
-//                 // return if already current
-//                 if (classie.has(item, 'nav-item--current')) {
-//                     return false;
-//                 }
-//                 // remove current
-//                 classie.remove(menu.querySelector('.nav-item--current'), 'nav-item--current');
-//                 // set current
-//                 classie.add(item, 'nav-item--current');
-//             };
-//         [].slice.call(menuItems).forEach(function(el) {
-//             el.addEventListener('click', setCurrent);
-//         });
-//     });
-// })(window);
 
+(function() {
+    // Declare Variables
+    var music = document.getElementById("music");
+    var playButton = document.getElementById("play");
+    var pauseButton = document.getElementById("pause");
+    var playhead = document.getElementById("elapsed");
+    var timeline = document.getElementById("slider");
+    var timer = document.getElementById("timer");
+    var duration = void 0;
 
-// Music Player Test
-var music = document.getElementById("music");
-var playButton = document.getElementById("play");
-var pauseButton = document.getElementById("pause");
-var playhead = document.getElementById("elapsed");
-var timeline = document.getElementById("slider");
-var timer = document.getElementById("timer");
-var duration;
-pauseButton.style.visibility = "hidden";
+    pauseButton.style.visibility = "hidden";
 
-var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
-music.addEventListener("timeupdate", timeUpdate, false);
+    var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 
-function timeUpdate() {
-    var playPercent = timelineWidth * (music.currentTime / duration);
-    playhead.style.width = playPercent + "px";
+    music.addEventListener("timeupdate", timeUpdate, false);
 
-    var secondsIn = Math.floor(((music.currentTime / duration) / 3.5) * 100);
-    if (secondsIn <= 9) {
-        timer.innerHTML = "0:0" + secondsIn;
-    } else {
-        timer.innerHTML = "0:" + secondsIn;
+    function timeUpdate() {
+        var playPercent = timelineWidth * (music.currentTime / duration);
+        playhead.style.width = playPercent + "px";
+
+        var secondsIn = Math.floor(music.currentTime / duration / 3.5 * 100);
+        if (secondsIn <= 3) {
+            timer.innerHTML = "0:0" + secondsIn;
+        } else {
+            timer.innerHTML = "0:" + secondsIn;
+        }
     }
-}
 
-playButton.onclick = function() {
-    music.play();
-    playButton.style.visibility = "hidden";
-    pause.style.visibility = "visible";
-};
+    playButton.onclick = function() {
+        music.play();
+        playButton.style.visibility = "hidden";
+        pauseButton.style.visibility = "visible";
+    };
 
-pauseButton.onclick = function() {
-    music.pause();
-    playButton.style.visibility = "visible";
-    pause.style.visibility = "hidden";
-};
+    pauseButton.onclick = function() {
+        music.pause();
+        playButton.style.visibility = "visible";
+        pauseButton.style.visibility = "hidden";
+    };
 
-music.addEventListener("canplaythrough", function() {
-    duration = music.duration;
-}, false);
+    music.addEventListener("canplaythrough", function() {
+        duration = music.duration;
+    }, false);
+})();

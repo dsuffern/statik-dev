@@ -1,17 +1,19 @@
 // CSS Styles for Large
 // Header on Home page 
 .large-header {
-    height: 100vh;
+    height: calc(100vh - 60px);
     width: 100%;
+    text-align: center;
     max-width: 100%;
     overflow: hidden;
     background-color: rbga(34, 34, 34, 0.85);
-    background-image: url('../../images/dope-af.jpg');
+    background-image: url('../../images/statik-header.jpg');
     background-size: cover;
     background-position: 50% 50%;
     z-index: 1;
     // Logo Wrap & Positioning
     .logo-wrap {
+        // @include make-row();
         position: absolute;
         margin: 0;
         padding: 0;
@@ -19,11 +21,18 @@
         text-align: center;
         top: 50%;
         left: 50%;
-        -webkit-transform: translate3d(-50%, -50%, 0);
         transform: translate3d(-50%, -50%, 0);
     }
-    h1 {
+    .site-title {
+        // text-shadow: .04em .04em 0 #9cb8b3;
+        text-shadow: 0.04em 0.04em 0 rgba(30, 30, 30, 0.75);
+        background-color: rgba(60, 60, 60, 0.70);
+        color: #F9F1E9;
         font-size: 7em;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        padding: 0.25em;
+        border: 1px solid #efefef;
     }
 }
 
